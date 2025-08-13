@@ -11,8 +11,9 @@ body {
 
 .calculator-container {
   width: 240px;
-  margin: 40px auto;
-  padding: 16px;
+  height: 400px;
+  margin: 50px auto;
+  padding: 20px;
   border: 2px solid #5f5d5d;
   border-radius: 8px;
   background: #585151;

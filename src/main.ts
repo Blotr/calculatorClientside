@@ -35,7 +35,11 @@ class Calculator {
     this.operator = null;
   }
 
-  
+  public overflow() {
+    if (this.currentInput.length > 10) {
+      this.currentInput = 'OVERFLOW';
+    }
+  }
 
   public compute() {
     if (this.previousInput && this.currentInput && this.operator) {
@@ -90,6 +94,13 @@ buttons.forEach(button => {
         });
       }
       updateDisplay(calculator.getInput());
+      if (calculator.getInput() === '80085') {
+        updateDisplay('BOOBIES');
+        delay(1000).then(() => {
+          calculator.clear();
+          updateDisplay('');
+        });
+      }
     } else if (value === 'C') {
         calculator.clear();
         updateDisplay('CLEAR');
@@ -106,8 +117,8 @@ buttons.forEach(button => {
         calculator.setPreviousInput('');
         calculator.setOperator(null);
         shouldResetInput = true;
-        if (result.toString().length > 16) {
-          updateDisplay('OVERFLOW');
+        if (result.toString().length > 10) {
+          calculator.overflow();
           buttons.forEach(btn => ((btn as HTMLButtonElement).disabled = true));
           delay(1000).then(() => {
             updateDisplay('');
@@ -124,4 +135,3 @@ buttons.forEach(button => {
     }
   });
 });
-
